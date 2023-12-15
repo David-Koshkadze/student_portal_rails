@@ -1,0 +1,56 @@
+<h1>Requests#new</h1>
+
+<%= form_with(model: @request, url: requests_path, method: :post, class: "form") do |f| %>
+  <div class="form-group">
+    <%= f.label :subject_id %>
+    <%= f.collection_select :subject_id, Subject.all, :id, :name, { include_blank: true }, { class: "form-control", id: "subject-selector" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :lecturer_id %>
+    <%= f.collection_select :lecturer_id, [], :id, :name, { include_blank: true }, { class: "form-control", id: "lecturer-selector" } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :day_of_week %>
+    <%= f.select :day_of_week, options_for_select(Date::DAYNAMES.each_with_index.map { |day, index| [day, index] }), { include_blank: true }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :start_time %>
+    <%= f.time_field :start_time, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :end_time %>
+    <%= f.time_field :end_time, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Submit Request", class: "btn btn-primary" %>
+<% end %>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const subjectSelector = document.getElementById("subject-selector");
+        const lecturerSelector = document.getElementById("lecturer-selector");
+
+        subjectSelector.addEventListener("change", function () {
+            const subjectId = subjectSelector.value;
+
+            fetch(`/subjects/${subjectId}/lecturers`)
+                .then(response => response.json())
+                .then(data => {
+                    lecturerSelector.innerHTML = ""; // Clear the current options
+                    data.forEach(lecturer => {
+                        const option = document.createElement("option");
+                        option.value = lecturer.id;
+                        option.text = lecturer.name;
+                        lecturerSelector.add(option);
+                    });
+                });
+        });
+    });
+</script>
+
+
+

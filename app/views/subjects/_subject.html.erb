@@ -1,0 +1,28 @@
+<div id="<%= dom_id subject %>">
+  <p>
+    <strong>Name:</strong>
+    <%= subject.name %>
+  </p>
+  <p>
+    <strong>Description:</strong>
+    <%= subject.description %>
+  </p>
+
+  <% if @lecturers %>
+    <% @lecturers.each do |lecturer| %>
+      <div class="card p-2 mb-4">
+        <h3><%= lecturer.name %></h3>
+        <!--      <p><%#= lecturer.start_time %></p>-->
+        <!--      <p><%#= lecturer.end_time %></p>-->
+
+        <p><strong>Day: </strong> <%= lecturer.day_of_week.capitalize %></p>
+        <p><strong>Time:</strong> <%= lecturer.start_time.strftime("%H:%M") %>
+          to <%= lecturer.end_time.strftime("%H:%M") %></p>
+        <!--      <p><strong>Recurring Schedule:</strong>-->
+        <!--        From <%#= Time.now.beginning_of_week + lecturer.day_of_week.days + lecturer.start_time.seconds_since_midnight.seconds %>-->
+        <!--        to <%#= Time.now.end_of_week + lecturer.day_of_week.days + lecturer.start_time.seconds_since_midnight.seconds %>-->
+        <!--      </p>-->
+      </div>
+    <% end %>
+  <% end %>
+</div>

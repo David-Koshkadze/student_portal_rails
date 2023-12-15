@@ -1,0 +1,14 @@
+<h1>Requests</h1>
+
+<hr>
+<%= link_to "Create new request", new_request_path, class: "btn btn-outline-secondary btn-sm" %>
+<br>
+<br>
+<% @requests.each do |request| %>
+  <div class="card p-2 mb-2">
+    <p><%= request.request_code %></p>
+    <p><%= request.day_of_week %></p>
+    <p><%= request.start_time %></p>
+    <p><%= request.end_time %></p>
+  </div>
+<% end %>

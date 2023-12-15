@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request_code: MyString
+  date: 2023-12-15
+  client: one
+  subject: one
+  lecturer: one
+  requested_hours: MyString
+  actual_hours: MyString
+
+two:
+  request_code: MyString
+  date: 2023-12-15
+  client: two
+  subject: two
+  lecturer: two
+  requested_hours: MyString
+  actual_hours: MyString

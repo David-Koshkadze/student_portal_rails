@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Subjects</h1>
+<hr>
+
+<div id="subjects">
+  <% @subjects.each do |subject| %>
+    <%= render subject %>
+    <p>
+      <%= link_to "See more", subject, class: "btn btn-primary btn-sm" %>
+    </p>
+    <hr>
+  <% end %>
+</div>
+
+<p>Only Admin</p>
+<%= link_to "New subject", new_subject_path %>
